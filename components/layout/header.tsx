@@ -190,8 +190,8 @@ export function Header() {
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2">
                   <button
-                    onClick={(e) => {
-                      switchToEnglish(e);
+                    onClick={() => {
+                      switchToEnglish();
                       setMobileMenuOpen(false);
                     }}
                     className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-all text-center cursor-pointer ${
@@ -203,8 +203,8 @@ export function Header() {
                     EN
                   </button>
                   <button
-                    onClick={(e) => {
-                      switchToChinese(e);
+                    onClick={() => {
+                      switchToChinese();
                       setMobileMenuOpen(false);
                     }}
                     className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-all text-center cursor-pointer ${
