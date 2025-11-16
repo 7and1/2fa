@@ -1,14 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { ThemeToggle } from '@/components/theme-toggle';
 
 export function Header() {
   const pathname = usePathname();
-  const router = useRouter();
   const t = useTranslations('app');
   const navT = useTranslations('nav');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

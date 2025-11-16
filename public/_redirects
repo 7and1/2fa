@@ -1,5 +1,7 @@
-# Redirect root to English version
-/    /en/    302
+# Redirect root and non-localized routes to English version
+/              /en/           302
+/manager       /en/manager/   302
+/manager/*     /en/manager/:splat   302
 
 # Handle 404s for localized routes
 /en/*    /en/404.html    404
