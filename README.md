@@ -1,4 +1,4 @@
-# 2FA Manager
+# 2FA Live Auth
 
 > Professional-grade bulk 2FA workspace built with Next.js
 
