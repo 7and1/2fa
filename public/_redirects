@@ -1,4 +1,6 @@
-# Cloudflare Pages SPA routing
-# This ensures all routes are handled by the client-side router
+# Redirect root to English version
+/    /en/    302
 
-/*    /index.html   200
+# Handle 404s for localized routes
+/en/*    /en/404.html    404
+/zh/*    /zh/404.html    404
