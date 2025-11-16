@@ -1,0 +1,393 @@
+{
+  "app": {
+    "name": "2FA2FA",
+    "description": "实时双因素认证和 TOTP 管理平台",
+    "tagline": "实时、安全、本地优先",
+    "domain": "2fa2fa.com"
+  },
+  "nav": {
+    "home": "首页",
+    "live": "实时认证",
+    "manager": "管理器",
+    "about": "关于"
+  },
+  "home": {
+    "title": "欢迎使用 2FA 管理器",
+    "subtitle": "安全管理您的双因素认证代码",
+    "quickMode": {
+      "title": "快速模式",
+      "description": "无需存储即可生成单个代码"
+    },
+    "vaultMode": {
+      "title": "保险库管理",
+      "description": "加密保险库批量管理 TOTP"
+    },
+    "features": {
+      "title": "功能特性",
+      "local": "本地优先",
+      "localDesc": "所有数据在浏览器中加密",
+      "batch": "批量生成",
+      "batchDesc": "同时生成 100+ 个代码",
+      "secure": "军事级加密",
+      "secureDesc": "AES-256-GCM + PBKDF2"
+    }
+  },
+  "live": {
+    "title": "实时认证",
+    "h1": "2FA 实时认证 - 实时 TOTP 身份验证",
+    "description": "实时双因素认证，无需存储",
+    "secretLabel": "Base32 密钥",
+    "secretPlaceholder": "输入您的 TOTP 密钥",
+    "secretHelper": "输入您的 Base32 密钥或上传二维码图片",
+    "generate": "生成代码",
+    "copy": "复制代码",
+    "copied": "已复制！",
+    "timeRemaining": "剩余时间：{seconds}秒",
+    "expiresInSeconds": "剩余{seconds}秒",
+    "tryExample": "试试示例",
+    "demoSecret": "JBSWY3DPEHPK3PXP",
+    "emptyTitle": "准备进行实时认证",
+    "emptyDescription": "在上方粘贴您的 Base32 TOTP 密钥以生成实时认证代码",
+    "tryDemoExample": "试试演示示例",
+    "warningNoSave": "实时模式不会保存您的密钥。关闭页面后将丢失。",
+    "wantToSave": "想要保存您的密钥？",
+    "exampleLoaded": {
+      "title": "示例已加载",
+      "description": "试试复制并使用这个演示代码！"
+    },
+    "qr": {
+      "processing": {
+        "title": "处理中",
+        "description": "扫描二维码中..."
+      },
+      "success": {
+        "scanned": "二维码扫描成功！",
+        "extracted": "已从二维码提取密钥"
+      },
+      "errors": {
+        "invalidUri": "无效的 otpauth:// 地址",
+        "noSecret": "地址中未找到密钥",
+        "parseFailed": "解析 otpauth:// 地址失败",
+        "canvasContext": "获取画布上下文失败",
+        "imageLoad": "加载图片失败",
+        "fileRead": "读取文件失败",
+        "noQrCode": "图片中未找到二维码",
+        "scanFailed": "扫描二维码失败"
+      }
+    },
+    "education": {
+      "subtitle": "为什么单靠密码就像敞开你家大门",
+      "intro": "说实话：密码在2024年基本没用。不是因为它们弱，而是因为大家都有你的密码了。数据泄露天天发生。你的'安全'密码可能已经在暗网上卖0.5美元了。",
+      "reality": {
+        "title": "⚠️ 残酷的现实（2024数据）",
+        "stat1": "99.9%",
+        "stat1Desc": "的自动化攻击被2FA阻止（微软2025）",
+        "stat2": "430亿美元",
+        "stat2Desc": "2023年因账户接管造成的损失（AARP）",
+        "stat3": "240亿",
+        "stat3Desc": "2023年泄露的凭据数量（IBM）",
+        "stat4": "71%",
+        "stat4Desc": "凭据填充攻击增长率（Sift 2024）"
+      },
+      "howItWorks": {
+        "title": "🔐 工作原理（小学生版）",
+        "step1Title": "步骤1：密码（你知道的）",
+        "step1Desc": "这个已经泄露了。接受现实。继续。",
+        "step2Title": "步骤2：TOTP代码（你拥有的）",
+        "step2Desc": "一个每30秒变化的6位数字，基于：",
+        "mathTitle": "数学原理（别担心细节）：",
+        "mathDesc": "HMAC-SHA1(密钥 + 当前时间) → 6位数字代码。相同输入 = 相同代码。不同时间 = 不同代码。口袋大小的军事级加密。",
+        "step3Title": "步骤3：攻击者的麻烦",
+        "step3Desc": "即使有你的密码，他们还需要你的手机/设备生成代码。无法偷取每30秒就变化的东西。"
+      },
+      "protection": {
+        "title": "🛡️ 真实世界的保护",
+        "phishing": "钓鱼攻击：99%阻止",
+        "phishingDesc": "点击了假登录页？没事。输入密码？还是没事。没有你不断变化的代码，他们登录不了（谷歌安全）。",
+        "stuffing": "凭据填充：100%阻止",
+        "stuffingDesc": "你从47个不同泄露事件中泄露的密码？没有TOTP就没用。2024年攻击增加71%，但你免疫（Sift Network）。",
+        "sim": "SIM卡交换：免疫",
+        "simDesc": "短信代码会被劫持。TOTP应用不会。FBI报告SIM卡交换攻击增加183% - 使用基于应用的2FA就不在乎。"
+      },
+      "science": {
+        "title": "🔒 安全科学",
+        "mathematicalProof": "数学证明：",
+        "mathematicalProofDesc": "TOTP代码基于RFC 6238（去谷歌一下）。银行、政府和所有注重安全的组织使用的相同标准。",
+        "cryptographic": "加密基础：",
+        "cryptographicDesc": "SHA-1 HMAC算法。是的，SHA-1在文档签名上有碰撞漏洞。不，这里不重要 - 你需要密钥，而密钥永远不会离开你的设备。",
+        "timeBased": "基于时间的安全：",
+        "timeBasedDesc": "30秒窗口 = 每天17,280个不同代码。错过窗口？代码就没用了。祝你暴力破解好运。",
+        "noNetwork": "无网络 = 无攻击面：",
+        "noNetworkDesc": "你的手机离线生成代码。无需麻烦的空气隔离安全。没东西可拦截。没东西可中间人。"
+      },
+      "privacy": {
+        "title": "⚡ 隐私：这里发生了什么",
+        "clientSide": "100%客户端处理：",
+        "clientSideDesc": "你的Base32密钥永远不会到达我们的服务器。不可能到达我们的服务器。我们没有为此设置服务器。一切都在你的浏览器中。",
+        "noTracking": "零跟踪：",
+        "noTrackingDesc": "没有分析。没有cookies。没有'功能必需'的扯淡。你的代码是你的事。",
+        "openSource": "开源：",
+        "openSourceDesc": "不信任我们？好。自己审计代码。全部公开。Fork它。自己托管。我们鼓励偏执。"
+      },
+      "bottomLine": {
+        "title": "💡 底线（不扯淡）",
+        "reality": "现实检查：如果你在2024年还不用2FA，你不是在'管理风险' - 你是在赌博。而赌场永远赢。",
+        "cost": "成本：免费",
+        "time": "时间：每个账户2分钟",
+        "protection": "保护：99.9%的攻击被阻止",
+        "question": "还有什么借口？"
+      },
+      "sources": {
+        "title": "来源：",
+        "description": "微软安全报告2025，IBM数据泄露成本报告2024，Proofpoint账户接管研究2024，AARP & Javelin欺诈研究2024，Sift全球网络2024，FBI IC3报告2024，谷歌安全博客2024"
+      }
+    }
+  },
+  "manager": {
+    "title": "2FA 管理器",
+    "h1": "2FA 管理器 - 安全 TOTP 保险库与认证器",
+    "subtitle": "加密保险库，管理您的所有 TOTP 代码",
+    "description": "安全管理您的 TOTP 代码",
+    "backupRestore": "备份与恢复",
+    "unlock": {
+      "title": "解锁管理器",
+      "password": "主密码",
+      "passwordPlaceholder": "输入密码（8位以上）",
+      "unlockButton": "解锁",
+      "createVault": "创建新管理器",
+      "unlocking": "解锁中...",
+      "unlocked": "管理器解锁成功",
+      "error": "解锁失败",
+      "enterPasswordDesc": "输入主密码以访问您的保险库",
+      "createPasswordDesc": "创建主密码以保护您的保险库",
+      "passwordHelp": "最少8个字符。请选择强密码。",
+      "validation": {
+        "passwordRequired": "密码不能为空",
+        "passwordMinLength": "密码至少需要8个字符"
+      },
+      "securityNotes": {
+        "title": "安全说明：",
+        "encryption": "您的保险库使用 AES-256-GCM 加密",
+        "pbkdf2": "密码使用 PBKDF2，600,000次迭代",
+        "storage": "数据以加密形式存储在浏览器中",
+        "warning": "丢失密码意味着永久数据丢失"
+      }
+    },
+    "lock": "锁定管理器",
+    "addAccount": "添加账户",
+    "importCSV": "导入 CSV",
+    "scanQR": "扫描二维码",
+    "backup": "备份",
+    "restore": "恢复",
+    "stats": {
+      "title": "统计信息",
+      "totalAccounts": "总账户数",
+      "activeAccounts": "活跃",
+      "unlocked": "已解锁",
+      "vaultSecured": "保险库已加密"
+    },
+    "board": {
+      "title": "TOTP 代码",
+      "description": "您的 TOTP 代码每秒自动更新",
+      "copyAll": "复制所有代码",
+      "copied": "已复制 {count} 个代码",
+      "copiedCount": "已复制{count}个代码到剪贴板",
+      "empty": "还没有账户",
+      "emptyDesc": "添加您的第一个账户开始生成 TOTP 代码",
+      "searchPlaceholder": "搜索账户...",
+      "copyAllCount": "全部复制（{count}）",
+      "showingStats": "显示{filtered}/{total}个账户",
+      "clearSearch": "清除搜索",
+      "noResults": "未找到匹配\"{query}\"的账户"
+    },
+    "card": {
+      "copiedDescription": "{issuer}代码已复制到剪贴板",
+      "deleted": "已删除",
+      "deletedDescription": "{issuer}账户已移除",
+      "deleteError": "删除账户失败",
+      "expiresIn": "剩余时间",
+      "clickToCopy": "点击复制"
+    },
+    "addAccountDialog": {
+      "title": "添加账户",
+      "description": "向保险库添加新的2FA账户",
+      "success": "账户添加成功",
+      "error": "添加账户失败",
+      "adding": "添加中...",
+      "addButton": "添加账户",
+      "defaultIssuer": "未知",
+      "defaultLabel": "账户",
+      "qrComingSoon": "二维码扫描即将推出...",
+      "tabs": {
+        "manual": "手动输入",
+        "qr": "二维码（即将推出）"
+      },
+      "fields": {
+        "issuer": "发行者（例如：Google、GitHub）",
+        "issuerPlaceholder": "Google",
+        "accountLabel": "账户标签（例如：user@example.com）",
+        "accountLabelPlaceholder": "user@example.com",
+        "secret": "密钥",
+        "secretPlaceholder": "JBSWY3DPEHPK3PXP",
+        "secretHelp": "Base32编码的密钥（通常由服务提供）"
+      },
+      "validation": {
+        "secretRequired": "密钥不能为空"
+      },
+      "advancedSettings": "高级设置：默认使用SHA-1算法、6位数字和30秒周期。这些是最常见的设置。"
+    },
+    "securityInfo": {
+      "title": "安全信息",
+      "description": "您的保险库使用 AES-256-GCM 加密。所有 TOTP 代码都在浏览器本地生成。点击任意代码卡片即可复制到剪贴板。使用完毕后记得锁定保险库。"
+    },
+    "backup": {
+      "title": "备份与恢复",
+      "export": "导出备份",
+      "import": "恢复备份",
+      "exportButton": "下载备份文件",
+      "importButton": "选择文件",
+      "exporting": "导出中...",
+      "importing": "导入中...",
+      "exported": "备份导出成功",
+      "imported": "备份恢复成功",
+      "warning": "恢复备份将替换保险库中的所有当前账户。此操作无法撤销。",
+      "requirements": "要求",
+      "whatIncluded": "包含内容",
+      "dialogDescription": "导出保险库或从备份文件恢复",
+      "selectFile": "选择备份文件",
+      "importHelp": "备份文件将使用您当前的主密码解密。请确保您使用的是创建备份时使用的相同密码。",
+      "exportInfo": {
+        "title": "导出信息",
+        "description": "您的备份文件包含加密的保险库数据。请妥善保管。"
+      },
+      "stats": {
+        "totalAccounts": "总账户数：",
+        "encryption": "加密方式：",
+        "encryptionValue": "AES-256-GCM",
+        "format": "格式：",
+        "formatValue": "JSON"
+      },
+      "included": {
+        "title": "包含内容：",
+        "secrets": "所有TOTP账户密钥（已加密）",
+        "names": "账户名称和发行者",
+        "tags": "标签和分组",
+        "favorites": "收藏标记"
+      },
+      "requirementsList": {
+        "validFile": "有效的备份文件（.json）",
+        "samePassword": "使用相同的主密码创建",
+        "fromThisApp": "从此应用导出"
+      },
+      "exportSuccess": {
+        "title": "备份已导出",
+        "description": "成功导出{count}个账户"
+      },
+      "exportError": {
+        "title": "导出失败",
+        "description": "导出备份失败"
+      },
+      "importSuccess": {
+        "title": "备份已恢复",
+        "description": "您的保险库已成功恢复"
+      },
+      "importError": {
+        "title": "导入失败",
+        "description": "导入备份失败"
+      },
+      "errors": {
+        "invalidJson": "无效的备份文件：不是有效的JSON"
+      }
+    },
+    "content": {
+      "mainTitle": "您的个人安全保险库",
+      "mainSubtitle": "了解它如何保护您的数字生活",
+      "intro": "说实话 - 如果你有超过3个在线账户，你就需要这个。为什么在没有适当系统的情况下管理多个2FA代码就像蒙着眼睛杂耍电锯。可能做到，但真的很蠢。",
+      "securityScience": {
+        "title": "🔒 安全科学（简单解释）",
+        "intro": "您的6位数代码来自军事级数学。与保护机密通信相同的加密技术。",
+        "aes": "AES-256-GCM 加密：",
+        "aesDesc": "超级计算机需要数十亿年才能破解",
+        "pbkdf2": "PBKDF2 密码强化：",
+        "pbkdf2Desc": "100,000+ 轮迭代使暴力破解慢 100,000 倍",
+        "clientSide": "100% 客户端：",
+        "clientSideDesc": "零服务器存储，零数据传输，零云风险"
+      },
+      "stats": {
+        "title": "📊 重要的真实数据",
+        "stat1": "99.9%",
+        "stat1Desc": "的自动化攻击被 2FA 阻止（微软 2025）",
+        "stat2": "$43B",
+        "stat2Desc": "2023 年因账户接管造成的损失（AARP）",
+        "stat3": "42+ 小时",
+        "stat3Desc": "通过适当管理每年节省的时间",
+        "stat4": "26,000%",
+        "stat4Desc": "企业投资回报率（IBM 2024）"
+      },
+      "whyManager": {
+        "title": "⚡ 为什么这个管理器改变一切",
+        "feature1Title": "1. 批量代码生成（游戏规则改变者）",
+        "feature1Desc": "同时查看所有代码。即时搜索。一键复制。比滚动应用程序快 10.5 倍。",
+        "feature2Title": "2. 加密备份（因为意外总会发生）",
+        "feature2Desc": "笔记本电脑坏了？2 分钟内恢复。相比之下，打客服电话需要 3-5 个工作日。",
+        "feature3Title": "3. 隐私保证（零信任模型）",
+        "feature3Desc": "一切都在您的浏览器中运行。零服务器存储。零云同步。我们看不到您的数据，因为我们根本没有。"
+      },
+      "threats": {
+        "title": "⚠️ 阻止的真实威胁",
+        "phishing": "钓鱼攻击：",
+        "phishingDesc": "即使您在假网站上输入密码，也能阻止 99%（谷歌）",
+        "stuffing": "凭据填充：",
+        "stuffingDesc": "100% 阻止 - 2024 年攻击增加 71%（Sift Network）",
+        "sim": "SIM 卡交换：",
+        "simDesc": "完全免疫 - 2024 年攻击增加 183%（FBI）"
+      },
+      "bottomLine": {
+        "title": "💡 底线",
+        "description": "您可以选择现在花 10 分钟，或者以后花 2+ 周从账户接管中恢复。",
+        "cost": "成本：",
+        "costValue": "$0",
+        "setup": "设置：",
+        "setupValue": "10 分钟",
+        "protection": "保护：",
+        "protectionValue": "无价"
+      },
+      "sources": {
+        "title": "来源：",
+        "description": "微软安全报告 2025，IBM 数据泄露成本报告 2024，Proofpoint 账户接管研究 2024，AARP & Javelin 欺诈研究 2024，Sift 全球网络 2024，FBI IC3 报告 2024，谷歌安全博客 2024"
+      }
+    }
+  },
+  "common": {
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "close": "关闭",
+    "loading": "加载中...",
+    "processing": "处理中",
+    "error": "错误",
+    "success": "成功",
+    "clear": "清除",
+    "warning": "警告",
+    "copied": "已复制！",
+    "copyError": "复制到剪贴板失败"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "页面未找到"
+  },
+  "footer": {
+    "quickLinks": "快速链接",
+    "security": "安全特性",
+    "github": "GitHub",
+    "subtitle": "安全、离线、基于浏览器的 TOTP 身份验证",
+    "copyright": "2FA 管理器。开源且注重隐私。",
+    "browserNotice": "所有数据保留在您的浏览器中",
+    "features": {
+      "encryption": "AES-256-GCM 加密",
+      "clientSide": "100% 客户端",
+      "compliant": "RFC 6238 兼容",
+      "noTracking": "无数据跟踪"
+    }
+  }
+}

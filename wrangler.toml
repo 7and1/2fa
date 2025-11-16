@@ -1,0 +1,12 @@
+name = "2fa-manager"
+compatibility_date = "2024-01-15"
+
+# Pages configuration
+pages_build_output_dir = "out"
+
+[site]
+bucket = "./out"
+
+# Environment variables (if needed)
+# [vars]
+# SOME_VAR = "value"
