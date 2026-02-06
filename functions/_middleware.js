@@ -5,9 +5,14 @@ export async function onRequest(context) {
   // Skip known routes
   if (path === '/' || path === '/en' || path === '/zh' ||
       path.startsWith('/en/') || path.startsWith('/zh/') ||
-      path.startsWith('/_next/') || path.startsWith('/api/') ||
+      path.startsWith('/_next/') ||
       path.includes('.')) {
     return context.next();
+  }
+
+  // Handle /api, /manager routes - redirect to /en/...
+  if (path === '/api' || path === '/manager') {
+    return Response.redirect(new URL('/en' + path, url.origin), 302);
   }
 
   // Check if path looks like a base32 secret (16+ chars, A-Z2-7)
