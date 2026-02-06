@@ -9,22 +9,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
+import { generateTOTP, getTimeWindow } from "@/lib/core/totp";
 
 interface SecretCodeViewProps {
   secretFromPath: string;
-}
-
-interface TotpGenerateResponse {
-  data: {
-    code: string;
-    expiresIn: number;
-    counter: number;
-  } | null;
-  meta: Record<string, unknown> | null;
-  error: {
-    code: string;
-    message: string;
-  } | null;
 }
 
 function decodeSecret(secret: string): string {
@@ -52,91 +40,33 @@ export function SecretCodeView({ secretFromPath }: SecretCodeViewProps) {
     () => normalizeSecret(secretFromPath),
     [secretFromPath],
   );
-  const isValidSecret = useMemo(
-    () => /^[A-Z2-7]+$/.test(normalizedSecret),
-    [normalizedSecret],
-  );
 
   const [code, setCode] = useState("");
   const [expiresIn, setExpiresIn] = useState(30);
   const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
 
-  const requestCode = useCallback(
-    async (silent = false) => {
-      if (!normalizedSecret) {
-        setCode("");
-        setError(tPath("invalidSecret"));
-        setIsLoading(false);
-        return;
-      }
+  // Auto-refresh code every second (same as main page)
+  useEffect(() => {
+    if (!normalizedSecret) return;
 
-      if (!isValidSecret) {
-        setCode("");
-        setError(tPath("invalidSecret"));
-        setIsLoading(false);
-        return;
-      }
-
-      if (!silent) {
-        setIsLoading(true);
-      }
-
+    const generateCode = async () => {
       try {
-        const response = await fetch("/api/v1/totp/generate", {
-          method: "post",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            secret: normalizedSecret,
-          }),
-        });
-
-        const payload = (await response.json()) as TotpGenerateResponse;
-        if (!response.ok || payload.error || !payload.data) {
-          throw new Error(payload.error?.message || tCommon("error"));
-        }
-
-        setCode(payload.data.code);
-        setExpiresIn(payload.data.expiresIn);
+        const generatedCode = await generateTOTP(normalizedSecret);
+        const { expiresIn: expires } = getTimeWindow();
+        setCode(generatedCode);
+        setExpiresIn(expires);
         setError(null);
-      } catch (requestError) {
+      } catch (err) {
+        setError((err as Error).message);
         setCode("");
-        setError(
-          requestError instanceof Error ? requestError.message : tCommon("error"),
-        );
-      } finally {
-        if (!silent) {
-          setIsLoading(false);
-        }
       }
-    },
-    [isValidSecret, normalizedSecret, tCommon, tPath],
-  );
+    };
 
-  useEffect(() => {
-    void requestCode();
-  }, [requestCode]);
+    generateCode();
+    const interval = setInterval(generateCode, 1000);
 
-  useEffect(() => {
-    if (isLoading || error || !code) {
-      return;
-    }
-
-    const timer = setInterval(() => {
-      setExpiresIn((previous) => {
-        if (previous <= 1) {
-          void requestCode(true);
-          return previous;
-        }
-
-        return previous - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [code, error, isLoading, requestCode]);
+    return () => clearInterval(interval);
+  }, [normalizedSecret]);
 
   const handleCopy = useCallback(async () => {
     if (!code) {
@@ -188,14 +118,12 @@ export function SecretCodeView({ secretFromPath }: SecretCodeViewProps) {
               </div>
 
               <div className="text-center space-y-3">
-                {isLoading ? (
-                  <p className="text-gray-300">{tCommon("loading")}</p>
-                ) : error ? (
+                {error ? (
                   <Alert variant="destructive" className="text-left">
                     <AlertTitle>{tCommon("error")}</AlertTitle>
                     <AlertDescription>{error}</AlertDescription>
                   </Alert>
-                ) : (
+                ) : code ? (
                   <>
                     <p className="font-mono text-5xl md:text-6xl font-bold text-white tracking-widest">
                       {code}
@@ -204,21 +132,14 @@ export function SecretCodeView({ secretFromPath }: SecretCodeViewProps) {
                       {t("expiresInSeconds", { seconds: expiresIn })}
                     </p>
                   </>
+                ) : (
+                  <p className="text-gray-300">{tCommon("loading")}</p>
                 )}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-2">
                 <Button onClick={handleCopy} disabled={!code} className="flex-1">
                   {t("copy")}
-                </Button>
-                <Button
-                  onClick={() => {
-                    void requestCode();
-                  }}
-                  variant="outline"
-                  className="flex-1"
-                >
-                  {t("generate")}
                 </Button>
                 <Button asChild variant="ghost" className="flex-1">
                   <Link href="/">{tPath("openHome")}</Link>
