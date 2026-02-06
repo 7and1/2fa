@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
-import { notFound } from 'next/navigation';
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
 import { Toaster } from "@/components/ui/toaster";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -10,7 +10,8 @@ import "../globals.css";
 
 export const metadata: Metadata = {
   title: "2FA Live Auth - Real-Time TOTP Authentication | 2FA2FA",
-  description: "Instant 2FA live authentication & secure TOTP manager. Generate real-time codes without storage or manage 100+ codes in encrypted vault. 100% browser-based, military-grade security.",
+  description:
+    "Instant 2FA live authentication & secure TOTP manager. Generate real-time codes without storage or manage 100+ codes in encrypted vault. 100% browser-based, military-grade security.",
   keywords: [
     "2fa live",
     "2fa auth",
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     "2fa codes",
     "time-based otp",
     "secure authentication",
-    "client-side encryption"
+    "client-side encryption",
   ],
   authors: [{ name: "2FA2FA" }],
   creator: "2FA2FA",
@@ -36,23 +37,21 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml", sizes: "any" },
-      { url: "/favicon.ico" }
+      { url: "/favicon.ico" },
     ],
-    apple: [
-      { url: "/apple-touch-icon.png" }
-    ]
+    apple: [{ url: "/apple-touch-icon.png" }],
   },
   manifest: "/site.webmanifest",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#441d1d" },
-    { media: "(prefers-color-scheme: dark)", color: "#182e63" }
+    { media: "(prefers-color-scheme: dark)", color: "#182e63" },
   ],
   alternates: {
     canonical: "/",
     languages: {
       en: "/",
-      zh: "/zh"
-    }
+      zh: "/zh",
+    },
   },
   openGraph: {
     type: "website",
@@ -61,21 +60,23 @@ export const metadata: Metadata = {
     url: "https://2fa2fa.com",
     siteName: "2FA2FA",
     title: "2FA2FA - Real-time 2FA Authentication & TOTP Manager",
-    description: "Professional real-time 2FA authentication and TOTP management. Live auth codes, secure manager, 100% client-side encryption.",
+    description:
+      "Professional real-time 2FA authentication and TOTP management. Live auth codes, secure manager, 100% client-side encryption.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "2FA2FA - Real-time 2FA Authentication"
-      }
-    ]
+        alt: "2FA2FA - Real-time 2FA Authentication",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "2FA2FA - Real-time 2FA Authentication & TOTP Manager",
-    description: "Professional real-time 2FA authentication and TOTP management platform.",
-    images: ["/og-image.png"]
+    description:
+      "Professional real-time 2FA authentication and TOTP management platform.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -85,23 +86,25 @@ export const metadata: Metadata = {
       follow: true,
       "max-video-preview": -1,
       "max-image-preview": "large",
-      "max-snippet": -1
-    }
+      "max-snippet": -1,
+    },
   },
   verification: {
     // Add your verification codes here when available
     // google: "your-google-verification-code",
-  }
+  },
 };
 
 // Enable static rendering
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 
-const locales = ['en', 'zh'];
+const locales = ["en", "zh"];
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
+
+export const dynamicParams = false;
 
 export default async function LocaleLayout({
   children,
@@ -134,9 +137,7 @@ export default async function LocaleLayout({
         >
           <NextIntlClientProvider messages={messages}>
             <Header />
-            <main className="flex-1">
-              {children}
-            </main>
+            <main className="flex-1">{children}</main>
             <Footer />
             <Toaster />
           </NextIntlClientProvider>
