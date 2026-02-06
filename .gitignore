@@ -41,3 +41,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# claude
+CLAUDE.md
+.claude/
+
+# dev vars
+.dev.vars
