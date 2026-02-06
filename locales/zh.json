@@ -141,16 +141,6 @@
         "title": "来源：",
         "description": "微软安全报告2025，IBM数据泄露成本报告2024，Proofpoint账户接管研究2024，AARP & Javelin欺诈研究2024，Sift全球网络2024，FBI IC3报告2024，谷歌安全博客2024"
       }
-    },
-    "pathMode": {
-      "title": "路径密钥模式",
-      "description": "通过 API 从 URL 密钥生成验证码",
-      "secretFromPath": "来自 URL 路径的密钥",
-      "openHome": "返回首页",
-      "invalidSecret": "URL 中的密钥无效",
-      "copyLink": "复制分享链接",
-      "openLink": "打开分享页",
-      "linkCopied": "分享链接已复制"
     }
   },
   "manager": {
@@ -187,65 +177,7 @@
     "addAccount": "添加账户",
     "importCSV": "导入 CSV",
     "scanQR": "扫描二维码",
-    "backup": {
-      "title": "备份与恢复",
-      "export": "导出备份",
-      "import": "恢复备份",
-      "exportButton": "下载备份文件",
-      "importButton": "选择文件",
-      "exporting": "导出中...",
-      "importing": "导入中...",
-      "exported": "备份导出成功",
-      "imported": "备份恢复成功",
-      "warning": "恢复备份将替换保险库中的所有当前账户。此操作无法撤销。",
-      "requirements": "要求",
-      "whatIncluded": "包含内容",
-      "dialogDescription": "导出保险库或从备份文件恢复",
-      "selectFile": "选择备份文件",
-      "importHelp": "备份文件将使用您当前的主密码解密。请确保您使用的是创建备份时使用的相同密码。",
-      "exportInfo": {
-        "title": "导出信息",
-        "description": "您的备份文件包含加密的保险库数据。请妥善保管。"
-      },
-      "stats": {
-        "totalAccounts": "总账户数：",
-        "encryption": "加密方式：",
-        "encryptionValue": "AES-256-GCM",
-        "format": "格式：",
-        "formatValue": "JSON"
-      },
-      "included": {
-        "title": "包含内容：",
-        "secrets": "所有TOTP账户密钥（已加密）",
-        "names": "账户名称和发行者",
-        "tags": "标签和分组",
-        "favorites": "收藏标记"
-      },
-      "requirementsList": {
-        "validFile": "有效的备份文件（.json）",
-        "samePassword": "使用相同的主密码创建",
-        "fromThisApp": "从此应用导出"
-      },
-      "exportSuccess": {
-        "title": "备份已导出",
-        "description": "成功导出{count}个账户"
-      },
-      "exportError": {
-        "title": "导出失败",
-        "description": "导出备份失败"
-      },
-      "importSuccess": {
-        "title": "备份已恢复",
-        "description": "您的保险库已成功恢复"
-      },
-      "importError": {
-        "title": "导入失败",
-        "description": "导入备份失败"
-      },
-      "errors": {
-        "invalidJson": "无效的备份文件：不是有效的JSON"
-      }
-    },
+    "backup": "备份",
     "restore": "恢复",
     "stats": {
       "title": "统计信息",
@@ -307,6 +239,65 @@
     "securityInfo": {
       "title": "安全信息",
       "description": "您的保险库使用 AES-256-GCM 加密。所有 TOTP 代码都在浏览器本地生成。点击任意代码卡片即可复制到剪贴板。使用完毕后记得锁定保险库。"
+    },
+    "backup": {
+      "title": "备份与恢复",
+      "export": "导出备份",
+      "import": "恢复备份",
+      "exportButton": "下载备份文件",
+      "importButton": "选择文件",
+      "exporting": "导出中...",
+      "importing": "导入中...",
+      "exported": "备份导出成功",
+      "imported": "备份恢复成功",
+      "warning": "恢复备份将替换保险库中的所有当前账户。此操作无法撤销。",
+      "requirements": "要求",
+      "whatIncluded": "包含内容",
+      "dialogDescription": "导出保险库或从备份文件恢复",
+      "selectFile": "选择备份文件",
+      "importHelp": "备份文件将使用您当前的主密码解密。请确保您使用的是创建备份时使用的相同密码。",
+      "exportInfo": {
+        "title": "导出信息",
+        "description": "您的备份文件包含加密的保险库数据。请妥善保管。"
+      },
+      "stats": {
+        "totalAccounts": "总账户数：",
+        "encryption": "加密方式：",
+        "encryptionValue": "AES-256-GCM",
+        "format": "格式：",
+        "formatValue": "JSON"
+      },
+      "included": {
+        "title": "包含内容：",
+        "secrets": "所有TOTP账户密钥（已加密）",
+        "names": "账户名称和发行者",
+        "tags": "标签和分组",
+        "favorites": "收藏标记"
+      },
+      "requirementsList": {
+        "validFile": "有效的备份文件（.json）",
+        "samePassword": "使用相同的主密码创建",
+        "fromThisApp": "从此应用导出"
+      },
+      "exportSuccess": {
+        "title": "备份已导出",
+        "description": "成功导出{count}个账户"
+      },
+      "exportError": {
+        "title": "导出失败",
+        "description": "导出备份失败"
+      },
+      "importSuccess": {
+        "title": "备份已恢复",
+        "description": "您的保险库已成功恢复"
+      },
+      "importError": {
+        "title": "导入失败",
+        "description": "导入备份失败"
+      },
+      "errors": {
+        "invalidJson": "无效的备份文件：不是有效的JSON"
+      }
     },
     "content": {
       "mainTitle": "您的个人安全保险库",

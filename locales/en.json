@@ -141,16 +141,6 @@
         "title": "Sources:",
         "description": "Microsoft Security Report 2025, IBM Cost of a Data Breach Report 2024, Proofpoint Account Takeover Research 2024, AARP & Javelin Fraud Study 2024, Sift Global Network 2024, FBI IC3 Report 2024, Google Security Blog 2024"
       }
-    },
-    "pathMode": {
-      "title": "Path Secret Mode",
-      "description": "Generate code from URL secret via API",
-      "secretFromPath": "Secret from URL path",
-      "openHome": "Open Home",
-      "invalidSecret": "Invalid secret in URL",
-      "copyLink": "Copy Share Link",
-      "openLink": "Open Share Page",
-      "linkCopied": "Share link copied"
     }
   },
   "manager": {
@@ -187,65 +177,7 @@
     "addAccount": "Add Account",
     "importCSV": "Import CSV",
     "scanQR": "Scan QR Code",
-    "backup": {
-      "title": "Backup & Restore",
-      "export": "Export Backup",
-      "import": "Restore Backup",
-      "exportButton": "Download Backup File",
-      "importButton": "Choose File",
-      "exporting": "Exporting...",
-      "importing": "Importing...",
-      "exported": "Backup exported successfully",
-      "imported": "Backup restored successfully",
-      "warning": "Restoring a backup will replace all current accounts in your vault. This action cannot be undone.",
-      "requirements": "Requirements",
-      "whatIncluded": "What's included",
-      "dialogDescription": "Export your vault or restore from a backup file",
-      "selectFile": "Select Backup File",
-      "importHelp": "The backup file will be decrypted using your current master password. Make sure you're using the same password that was used to create the backup.",
-      "exportInfo": {
-        "title": "Export Information",
-        "description": "Your backup file contains encrypted vault data. Keep it safe and secure."
-      },
-      "stats": {
-        "totalAccounts": "Total Accounts:",
-        "encryption": "Encryption:",
-        "encryptionValue": "AES-256-GCM",
-        "format": "Format:",
-        "formatValue": "JSON"
-      },
-      "included": {
-        "title": "What's included:",
-        "secrets": "All TOTP account secrets (encrypted)",
-        "names": "Account names and issuers",
-        "tags": "Tags and groups",
-        "favorites": "Favorite markers"
-      },
-      "requirementsList": {
-        "validFile": "Valid backup file (.json)",
-        "samePassword": "Created with the same master password",
-        "fromThisApp": "Exported from this application"
-      },
-      "exportSuccess": {
-        "title": "Backup exported",
-        "description": "{count} accounts exported successfully"
-      },
-      "exportError": {
-        "title": "Export failed",
-        "description": "Failed to export backup"
-      },
-      "importSuccess": {
-        "title": "Backup restored",
-        "description": "Your vault has been restored successfully"
-      },
-      "importError": {
-        "title": "Import failed",
-        "description": "Failed to import backup"
-      },
-      "errors": {
-        "invalidJson": "Invalid backup file: not valid JSON"
-      }
-    },
+    "backup": "Backup",
     "restore": "Restore",
     "stats": {
       "title": "Statistics",
@@ -307,6 +239,65 @@
     "securityInfo": {
       "title": "Security Information",
       "description": "Your vault is encrypted with AES-256-GCM. All TOTP codes are generated locally in your browser. Click any code card to copy it to your clipboard. Remember to lock your vault when you're done."
+    },
+    "backup": {
+      "title": "Backup & Restore",
+      "export": "Export Backup",
+      "import": "Restore Backup",
+      "exportButton": "Download Backup File",
+      "importButton": "Choose File",
+      "exporting": "Exporting...",
+      "importing": "Importing...",
+      "exported": "Backup exported successfully",
+      "imported": "Backup restored successfully",
+      "warning": "Restoring a backup will replace all current accounts in your vault. This action cannot be undone.",
+      "requirements": "Requirements",
+      "whatIncluded": "What's included",
+      "dialogDescription": "Export your vault or restore from a backup file",
+      "selectFile": "Select Backup File",
+      "importHelp": "The backup file will be decrypted using your current master password. Make sure you're using the same password that was used to create the backup.",
+      "exportInfo": {
+        "title": "Export Information",
+        "description": "Your backup file contains encrypted vault data. Keep it safe and secure."
+      },
+      "stats": {
+        "totalAccounts": "Total Accounts:",
+        "encryption": "Encryption:",
+        "encryptionValue": "AES-256-GCM",
+        "format": "Format:",
+        "formatValue": "JSON"
+      },
+      "included": {
+        "title": "What's included:",
+        "secrets": "All TOTP account secrets (encrypted)",
+        "names": "Account names and issuers",
+        "tags": "Tags and groups",
+        "favorites": "Favorite markers"
+      },
+      "requirementsList": {
+        "validFile": "Valid backup file (.json)",
+        "samePassword": "Created with the same master password",
+        "fromThisApp": "Exported from this application"
+      },
+      "exportSuccess": {
+        "title": "Backup exported",
+        "description": "{count} accounts exported successfully"
+      },
+      "exportError": {
+        "title": "Export failed",
+        "description": "Failed to export backup"
+      },
+      "importSuccess": {
+        "title": "Backup restored",
+        "description": "Your vault has been restored successfully"
+      },
+      "importError": {
+        "title": "Import failed",
+        "description": "Failed to import backup"
+      },
+      "errors": {
+        "invalidJson": "Invalid backup file: not valid JSON"
+      }
     },
     "content": {
       "mainTitle": "Your Personal Security Vault",
