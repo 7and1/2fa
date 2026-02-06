@@ -1,0 +1,12 @@
+# Cloudflare Pages Configuration Template
+# Copy this file to wrangler.toml and fill in your values
+# DO NOT commit wrangler.toml - it contains sensitive data
+
+name = "2fa-manager"
+compatibility_date = "2024-01-01"
+
+# Account ID - use environment variable CLOUDFLARE_ACCOUNT_ID instead
+# account_id = "your-account-id-here"
+
+[site]
+bucket = "./out"
