@@ -23,6 +23,36 @@ export default function HomePage() {
   const [error, setError] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Load secret from URL path or hash (e.g., /JBSWY3DPEHPK3PXP or /#JBSWY3DPEHPK3PXP)
+  useEffect(() => {
+    const loadSecret = () => {
+      // Try path first: /JBSWY3DPEHPK3PXP or /zh/JBSWY3DPEHPK3PXP
+      const path = window.location.pathname;
+      const segments = path.split('/').filter(Boolean);
+      const lastSegment = segments[segments.length - 1];
+
+      if (lastSegment && lastSegment !== 'en' && lastSegment !== 'zh' && lastSegment !== 'manager') {
+        const cleaned = lastSegment.replace(/\s/g, '').toUpperCase();
+        if (/^[A-Z2-7]+$/.test(cleaned) && cleaned.length >= 16) {
+          setSecret(cleaned);
+          return;
+        }
+      }
+
+      // Fallback to hash: /#JBSWY3DPEHPK3PXP
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        const cleaned = hash.replace(/\s/g, '').toUpperCase();
+        if (/^[A-Z2-7]+$/.test(cleaned) && cleaned.length >= 16) {
+          setSecret(cleaned);
+        }
+      }
+    };
+    loadSecret();
+    window.addEventListener('hashchange', loadSecret);
+    return () => window.removeEventListener('hashchange', loadSecret);
+  }, []);
+
   // Auto-refresh code every second
   useEffect(() => {
     if (!secret) return;
