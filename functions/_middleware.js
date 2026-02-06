@@ -3,11 +3,16 @@ export async function onRequest(context) {
   const path = url.pathname;
 
   // Skip known routes
-  if (path === '/' || path === '/en' || path === '/zh' ||
+  if (path === '/en' || path === '/zh' ||
       path.startsWith('/en/') || path.startsWith('/zh/') ||
       path.startsWith('/_next/') ||
       path.includes('.')) {
     return context.next();
+  }
+
+  // Handle root - redirect to /en
+  if (path === '/') {
+    return Response.redirect(new URL('/en', url.origin), 302);
   }
 
   // Handle /api, /manager routes - redirect to /en/...
