@@ -9,6 +9,7 @@
     "home": "首页",
     "live": "实时认证",
     "manager": "管理器",
+    "api": "API",
     "about": "关于"
   },
   "home": {
@@ -371,6 +372,53 @@
     "warning": "警告",
     "copied": "已复制！",
     "copyError": "复制到剪贴板失败"
+  },
+  "api": {
+    "title": "API",
+    "h1": "2FA2FA API - 通过 URL 即时获取 TOTP",
+    "description": "通过 URL 即时生成 TOTP 代码 - 无需应用",
+    "intro": "直接通过 URL 访问您的 2FA 代码。非常适合书签、脚本和快速访问。",
+    "urlFormat": {
+      "title": "URL 格式",
+      "description": "只需将您的 Base32 密钥附加到域名后：",
+      "example": "https://2fa2fa.com/您的密钥",
+      "note": "将 您的密钥 替换为您实际的 Base32 TOTP 密钥"
+    },
+    "examples": {
+      "title": "示例",
+      "basic": "基本用法",
+      "basicUrl": "https://2fa2fa.com/JBSWY3DPEHPK3PXP",
+      "basicDesc": "打开页面并显示当前的 TOTP 代码",
+      "bookmark": "书签提示",
+      "bookmarkDesc": "将 URL 保存为书签，即可即时访问您的 2FA 代码"
+    },
+    "features": {
+      "title": "功能特点",
+      "instant": "即时访问",
+      "instantDesc": "无需登录，无需应用 - 只需打开 URL",
+      "secure": "仅客户端",
+      "secureDesc": "您的密钥永远不会离开浏览器",
+      "noStorage": "零存储",
+      "noStorageDesc": "不保存任何内容，不跟踪任何内容",
+      "offline": "离线可用",
+      "offlineDesc": "加载后，无需网络即可生成代码"
+    },
+    "security": {
+      "title": "安全说明",
+      "warning": "重要提示：任何拥有该 URL 的人都可以生成您的 TOTP 代码",
+      "tips": {
+        "title": "最佳实践：",
+        "tip1": "不要分享包含密钥的 URL",
+        "tip2": "在共享电脑上使用隐私/无痕模式",
+        "tip3": "在公共设备上使用后清除浏览器历史记录",
+        "tip4": "对于敏感账户，建议使用管理器"
+      }
+    },
+    "tryIt": {
+      "title": "立即试用",
+      "description": "点击下面的演示链接查看效果：",
+      "demoLink": "演示：https://2fa2fa.com/JBSWY3DPEHPK3PXP"
+    }
   },
   "notFound": {
     "title": "404",

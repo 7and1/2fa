@@ -1,38 +1,31 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { useState } from 'react';
-import { ThemeToggle } from '@/components/theme-toggle';
+import { Link, usePathname, useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Header() {
   const pathname = usePathname();
-  const t = useTranslations('app');
-  const navT = useTranslations('nav');
+  const router = useRouter();
+  const t = useTranslations("app");
+  const navT = useTranslations("nav");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const isActive = (path: string) => {
-    return pathname === path || pathname === `/zh${path}`;
-  };
+  // Get current locale from pathname
+  const currentLocale = pathname.startsWith("/zh") ? "zh" : "en";
 
-  // Get current path without locale prefix
-  const getCurrentPath = () => {
-    if (pathname.startsWith('/zh')) {
-      return pathname.slice(3) || '/';
-    }
-    return pathname;
+  const isActive = (path: string) => {
+    return pathname === path;
   };
 
   // Language switch handlers
   const switchToEnglish = () => {
-    const currentPath = getCurrentPath();
-    window.location.href = currentPath;
+    router.replace(pathname, { locale: "en" });
   };
 
   const switchToChinese = () => {
-    const currentPath = getCurrentPath();
-    window.location.href = `/zh${currentPath}`;
+    router.replace(pathname, { locale: "zh" });
   };
 
   return (
@@ -59,10 +52,10 @@ export function Header() {
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-white text-lg leading-none">
-                {t('name')}
+                {t("name")}
               </span>
               <span className="text-xs text-gray-400 leading-none mt-0.5">
-                {t('tagline')}
+                {t("tagline")}
               </span>
             </div>
           </Link>
@@ -72,31 +65,76 @@ export function Header() {
             <Link
               href="/"
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                isActive('/') || isActive('/live')
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/50'
-                  : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                isActive("/") || isActive("/live")
+                  ? "bg-blue-600 text-white shadow-lg shadow-blue-600/50"
+                  : "text-gray-300 hover:text-white hover:bg-gray-800"
               }`}
             >
               <span className="flex items-center gap-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
                 </svg>
-                {navT('live')}
+                {navT("live")}
               </span>
             </Link>
             <Link
               href="/manager"
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                isActive('/manager')
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/50'
-                  : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                isActive("/manager")
+                  ? "bg-blue-600 text-white shadow-lg shadow-blue-600/50"
+                  : "text-gray-300 hover:text-white hover:bg-gray-800"
               }`}
             >
               <span className="flex items-center gap-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  />
                 </svg>
-                {navT('manager')}
+                {navT("manager")}
+              </span>
+            </Link>
+            <Link
+              href="/api"
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                isActive("/api")
+                  ? "bg-blue-600 text-white shadow-lg shadow-blue-600/50"
+                  : "text-gray-300 hover:text-white hover:bg-gray-800"
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                  />
+                </svg>
+                {navT("api")}
               </span>
             </Link>
           </nav>
@@ -108,9 +146,9 @@ export function Header() {
               <button
                 onClick={switchToEnglish}
                 className={`px-3 py-1 rounded-md text-xs font-medium transition-all cursor-pointer ${
-                  !pathname.startsWith('/zh')
-                    ? 'bg-gray-700 text-white'
-                    : 'text-gray-400 hover:text-white'
+                  currentLocale === "en"
+                    ? "bg-gray-700 text-white"
+                    : "text-gray-400 hover:text-white"
                 }`}
               >
                 EN
@@ -118,9 +156,9 @@ export function Header() {
               <button
                 onClick={switchToChinese}
                 className={`px-3 py-1 rounded-md text-xs font-medium transition-all cursor-pointer ${
-                  pathname.startsWith('/zh')
-                    ? 'bg-gray-700 text-white'
-                    : 'text-gray-400 hover:text-white'
+                  currentLocale === "zh"
+                    ? "bg-gray-700 text-white"
+                    : "text-gray-400 hover:text-white"
                 }`}
               >
                 中文
@@ -134,12 +172,32 @@ export function Header() {
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               )}
             </button>
@@ -153,33 +211,79 @@ export function Header() {
               <Link
                 href="/"
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                  isActive('/') || isActive('/live')
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                  isActive("/") || isActive("/live")
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-300 hover:text-white hover:bg-gray-800"
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
                   </svg>
-                  {navT('live')}
+                  {navT("live")}
                 </span>
               </Link>
               <Link
                 href="/manager"
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                  isActive('/manager')
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                  isActive("/manager")
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-300 hover:text-white hover:bg-gray-800"
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                    />
                   </svg>
-                  {navT('manager')}
+                  {navT("manager")}
+                </span>
+              </Link>
+              <Link
+                href="/api"
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  isActive("/api")
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-300 hover:text-white hover:bg-gray-800"
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="flex items-center gap-2">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    />
+                  </svg>
+                  {navT("api")}
                 </span>
               </Link>
 
@@ -194,9 +298,9 @@ export function Header() {
                       setMobileMenuOpen(false);
                     }}
                     className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-all text-center cursor-pointer ${
-                      !pathname.startsWith('/zh')
-                        ? 'bg-gray-700 text-white'
-                        : 'text-gray-400 hover:text-white bg-gray-800'
+                      currentLocale === "en"
+                        ? "bg-gray-700 text-white"
+                        : "text-gray-400 hover:text-white bg-gray-800"
                     }`}
                   >
                     EN
@@ -207,9 +311,9 @@ export function Header() {
                       setMobileMenuOpen(false);
                     }}
                     className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-all text-center cursor-pointer ${
-                      pathname.startsWith('/zh')
-                        ? 'bg-gray-700 text-white'
-                        : 'text-gray-400 hover:text-white bg-gray-800'
+                      currentLocale === "zh"
+                        ? "bg-gray-700 text-white"
+                        : "text-gray-400 hover:text-white bg-gray-800"
                     }`}
                   >
                     中文

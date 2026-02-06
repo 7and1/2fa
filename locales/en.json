@@ -9,6 +9,7 @@
     "home": "Home",
     "live": "Live auth",
     "manager": "Manager",
+    "api": "API",
     "about": "About"
   },
   "home": {
@@ -371,6 +372,53 @@
     "warning": "Warning",
     "copied": "Copied!",
     "copyError": "Failed to copy to clipboard"
+  },
+  "api": {
+    "title": "API",
+    "h1": "2FA2FA API - Instant TOTP via URL",
+    "description": "Generate TOTP codes instantly via URL - no app needed",
+    "intro": "Access your 2FA codes directly via URL. Perfect for bookmarks, scripts, and quick access.",
+    "urlFormat": {
+      "title": "URL Format",
+      "description": "Simply append your Base32 secret to the domain:",
+      "example": "https://2fa2fa.com/YOUR_SECRET",
+      "note": "Replace YOUR_SECRET with your actual Base32 TOTP secret"
+    },
+    "examples": {
+      "title": "Examples",
+      "basic": "Basic Usage",
+      "basicUrl": "https://2fa2fa.com/JBSWY3DPEHPK3PXP",
+      "basicDesc": "Opens the page and displays the current TOTP code",
+      "bookmark": "Bookmark Tip",
+      "bookmarkDesc": "Save the URL as a bookmark for instant access to your 2FA code"
+    },
+    "features": {
+      "title": "Features",
+      "instant": "Instant Access",
+      "instantDesc": "No login, no app - just open the URL",
+      "secure": "Client-Side Only",
+      "secureDesc": "Your secret never leaves your browser",
+      "noStorage": "Zero Storage",
+      "noStorageDesc": "Nothing saved, nothing tracked",
+      "offline": "Works Offline",
+      "offlineDesc": "Once loaded, generates codes without internet"
+    },
+    "security": {
+      "title": "Security Notes",
+      "warning": "Important: Anyone with the URL can generate your TOTP codes",
+      "tips": {
+        "title": "Best Practices:",
+        "tip1": "Don't share URLs containing secrets",
+        "tip2": "Use private/incognito mode on shared computers",
+        "tip3": "Clear browser history after use on public devices",
+        "tip4": "Consider using the Manager for sensitive accounts"
+      }
+    },
+    "tryIt": {
+      "title": "Try It Now",
+      "description": "Click the demo link below to see it in action:",
+      "demoLink": "Demo: https://2fa2fa.com/JBSWY3DPEHPK3PXP"
+    }
   },
   "notFound": {
     "title": "404",
